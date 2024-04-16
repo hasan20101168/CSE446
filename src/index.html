@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Information</title>
+</head>
+<body>
+    <h1>Patient Information Form</h1>
+    <form id="patientForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br>
+
+        <label for="vaccineStatus">Vaccine Status:</label><br>
+        <select id="vaccineStatus" name="vaccineStatus" required>
+            <option value="true">Vaccinated</option>
+            <option value="false">Not Vaccinated</option>
+        </select><br>
+
+        <label for="district">District:</label><br>
+        <input type="text" id="district" name="district" required><br>
+
+        <label for="symptomsDetails">Symptoms Details:</label><br>
+        <textarea id="symptomsDetails" name="symptomsDetails" rows="3" required></textarea><br>
+
+        <label for="isDead">Is Dead:</label><br>
+        <select id="isDead" name="isDead" required>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Patient Statistics</h2>
+    <div id="statisticsTable"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
