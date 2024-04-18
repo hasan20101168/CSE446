@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Patient Management System</title>
+</head>
+
+<body>
+    <h1>Patient Management System</h1>
+
+    <h2>Add Patient</h2>
+    <form id="addPatientForm">
+       <!-- <input type="text" id="patientId" placeholder="Patient ID" required><br> 
+        <input type="number" id="age" placeholder="Age" required><br>
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br>
+        <select id="vaccineStatus">
+            <option value="not_vaccinated">Not Vaccinated</option>
+            <option value="one_dose">One Dose</option>
+            <option value="two_dose">Two Dose</option>
+        </select><br>
+        <input type="text" id="district" placeholder="District" required><br>
+        <textarea id="symptomsDetails" placeholder="Symptoms Details" required></textarea><br>
+        <label for="isDead">Is Dead?</label>
+        <input type="checkbox" id="isDead"><br>
+        <button type="submit">Add Patient</button>-->
+        <label for="patientId">Patient ID:</label><br>
+        <input type="text" id="patientId" placeholder="" required><br> 
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br>
+
+        <label for="vaccineStatus">Vaccine Status:</label><br>
+        <select id="vaccineStatus">
+            <option value="not_vaccinated">Not Vaccinated</option>
+            <option value="one_dose">One Dose</option>
+            <option value="two_dose">Two Dose</option>
+        </select><br>
+
+        <label for="district">District:</label><br>
+        <input type="text" id="district" name="district" required><br>
+
+        <label for="symptomsDetails">Symptoms Details:</label><br>
+        <textarea id="symptomsDetails" name="symptomsDetails" rows="3" required></textarea><br>
+
+        <label for="isDead">Is Dead:</label><br>
+        <select id="isDead" name="isDead" required>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Update Patient</h2>
+    <form id="updatePatientForm">
+        <input type="text" id="updatePatientId" placeholder="Patient ID" required><br>
+        <select id="updateVaccineStatus">
+            <option value="not_vaccinated">Not Vaccinated</option>
+            <option value="one_dose">One Dose</option>
+            <option value="two_dose">Two Dose</option>
+        </select><br>
+        <label for="updateIsDead">Is Dead?</label>
+        <input type="checkbox" id="updateIsDead"><br>
+        <button type="submit">Update Patient</button>
+    </form>
+
+    <h2>Covid Trend Table</h2>
+    <table id="covidTrendTable">
+        <thead>
+            <tr>
+                <th>District</th>
+                <th>Average Death Rate Per Day</th>
+                <th>District with Highest Covid Patient</th>
+                <th>Median Age</th>
+                <th>Children Percentage</th>
+                <th>Teenage Percentage</th>
+                <th>Young Percentage</th>
+                <th>Elder Percentage</th>
+            </tr>
+        </thead>
+        <tbody id="covidTrendTableBody">
+            <!-- Data will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <h2>Download Vaccine Certificate</h2>
+    <button id="downloadCertificateButton">Download Vaccine Certificate</button>
+
+    <!-- Link to app.js file -->
+    <script src="app.js"></script>
+</body>
+
+</html>

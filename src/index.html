@@ -1,55 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Information</title>
+    <title>Patient Management System</title>
+    <!-- Import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Import Truffle and Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@truffle/contract@5.0.36/dist/truffle-contract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
+    <!-- Import Bootstrap CSS (optional) -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Patient Information Form</h1>
-    <form id="patientForm">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br>
+    <div class="container">
+        <h1>Patient Management System</h1>
 
-        <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age" required><br>
+        <!-- Add Patient Form -->
+        <h3>Add Patient</h3>
+        <form id="patientForm">
+            <div class="form-group">
+                <label for="patientId">Patient ID:</label>
+                <input type="text" id="patientId" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="vaccineStatus">Vaccine Status:</label>
+                <select id="vaccineStatus" class="form-control" required>
+                    <option value="not_vaccinated">Not Vaccinated</option>
+                    <option value="one_dose">One Dose</option>
+                    <option value="two_dose">Two Dose</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <input type="text" id="district" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="symptoms">Symptoms:</label>
+                <textarea id="symptoms" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="App.addPatient()">Add Patient</button>
+        </form>
 
-        <label for="gender">Gender:</label><br>
-        <select id="gender" name="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-        </select><br>
+        <!-- Update Patient Form -->
+        <h3>Update Patient</h3>
+        <form id="updateForm">
+            <div class="form-group">
+                <label for="updatePatientId">Patient ID:</label>
+                <input type="text" id="updatePatientId" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="updateVaccineStatus">Vaccine Status:</label>
+                <select id="updateVaccineStatus" class="form-control" required>
+                    <option value="not_vaccinated">Not Vaccinated</option>
+                    <option value="one_dose">One Dose</option>
+                    <option value="two_dose">Two Dose</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="isDead">Is Dead:</label>
+                <select id="isDead" class="form-control" required>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="App.updatePatient()">Update Patient</button>
+        </form>
 
-        <label for="vaccineStatus">Vaccine Status:</label><br>
-        <select id="vaccineStatus" name="vaccineStatus" required>
-            <option value="true">Vaccinated</option>
-            <option value="false">Not Vaccinated</option>
-        </select><br>
+        <!-- Covid Trend Data -->
+        <h3>Covid Trend Data</h3>
+        <p><strong>Average Death Rate Per Day:</strong> <span id="averageDeathRate"></span></p>
+        <p><strong>District with Highest Covid Patients:</strong> <span id="highestCovidDistrict"></span></p>
+        <p><strong>Median Age of Covid Patients:</strong> <span id="medianAge"></span></p>
+        <p><strong>Children Percentage:</strong> <span id="childrenPercentage"></span></p>
+        <p><strong>Teenagers Percentage:</strong> <span id="teenagersPercentage"></span></p>
+        <p><strong>Young Percentage:</strong> <span id="youngPercentage"></span></p>
+        <p><strong>Elder Percentage:</strong> <span id="elderPercentage"></span></p>
 
-        <label for="district">District:</label><br>
-        <input type="text" id="district" name="district" required><br>
+        <!-- Download Vaccine Certificate Form -->
+        <h3>Download Vaccine Certificate</h3>
+        <form id="certificateForm">
+            <div class="form-group">
+                <label for="certificatePatientId">Patient ID:</label>
+                <input type="text" id="certificatePatientId" class="form-control" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="App.downloadCertificate()">Download Certificate</button>
+        </form>
 
-        <label for="symptomsDetails">Symptoms Details:</label><br>
-        <textarea id="symptomsDetails" name="symptomsDetails" rows="3" required></textarea><br>
+        <!-- Loader -->
+        <div id="loader" style="display: none;">
+            <p>Loading...</p>
+        </div>
 
-        <label for="isDead">Is Dead:</label><br>
-        <select id="isDead" name="isDead" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select><br>
+        <!-- Content -->
+        <div id="content" style="display: none;">
+            <!-- Your content goes here -->
+        </div>
+    </div>
 
-        <input type="submit" value="Submit">
-    </form>
-
-    <h2>Patient Statistics</h2>
-    <div id="statisticsTable"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+    <!-- Include the app.js script -->
     <script src="app.js"></script>
 </body>
+
 </html>
-
-
 
